@@ -31,6 +31,11 @@ class RandomFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        randomViewModel.onNext()
+    }
+
     companion object {
         /**
          * The fragment argument representing the section number for this

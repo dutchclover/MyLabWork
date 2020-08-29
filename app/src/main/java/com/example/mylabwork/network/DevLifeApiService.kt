@@ -7,6 +7,7 @@ import kotlinx.coroutines.Deferred
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 
 private const val BASE_URL = "https://developerslife.ru/"
 
@@ -25,6 +26,18 @@ interface DevLifeApiService {
     @GET("random?json=true")
     fun getPropertyAsync():
             Deferred<DevLifeProperty>
+
+    @GET("top/{page_number}?json=true")
+    fun getTopPropertiesAsync(@Path("page_number")  page: Long):
+            Deferred<DevLifeObject>
+
+    @GET("latest/{page_number}?json=true")
+    fun getLatestPropertiesAsync(@Path("page_number")  page: Long):
+            Deferred<DevLifeObject>
+
+    @GET("hot/{page_number}?json=true")
+    fun getHotPropertiesAsync(@Path("page_number")  page: Long):
+            Deferred<DevLifeObject>
 }
 
 object DevLifeApi {

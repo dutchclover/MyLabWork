@@ -22,13 +22,18 @@ abstract class BaseGifStorageViewModel : ViewModel(){
     val property: LiveData<DevLifeProperty>
         get() = _property
 
-    fun onNext() = if (hasInCache()) {
+    protected val _properties = MutableLiveData<List<DevLifeProperty>>()
+
+    val properties: LiveData<List<DevLifeProperty>>
+        get() = _properties
+
+    open fun onNext() = if (hasInCache()) {
         _property.value = cache[++currentPage]
     } else {
         downloadData()
     }
 
-    fun onBack() {
+   open fun onBack() {
         if (currentPage > 0) {
             _property.value = cache[--currentPage]
         }

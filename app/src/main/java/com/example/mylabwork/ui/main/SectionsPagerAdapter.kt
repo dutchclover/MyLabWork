@@ -4,7 +4,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.mylabwork.hot.HotFragment
+import com.example.mylabwork.latest.LatestFragment
 import com.example.mylabwork.random.RandomFragment
+import com.example.mylabwork.top.TopFragment
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
@@ -13,13 +16,15 @@ import com.example.mylabwork.random.RandomFragment
 class SectionsPagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
 
     override fun createFragment(position: Int): Fragment {
-        // getItem is called to instantiate the fragment for the given page.
-        // Return a PlaceholderFragment (defined as a static inner class below).
-        return RandomFragment.newInstance(position + 1)
+        return when (position) {
+            0 -> RandomFragment()
+            1 -> LatestFragment()
+            2 -> TopFragment()
+            else -> HotFragment()
+        }
     }
 
     override fun getItemCount(): Int {
-        // Show 2 total pages.
         return 4
     }
 }

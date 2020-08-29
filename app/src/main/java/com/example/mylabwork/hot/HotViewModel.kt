@@ -1,4 +1,4 @@
-package com.example.mylabwork.random
+package com.example.mylabwork.hot
 
 import androidx.lifecycle.viewModelScope
 import com.example.mylabwork.base.BaseGifStorageViewModel
@@ -6,22 +6,20 @@ import com.example.mylabwork.base.DevLifeApiStatus
 import com.example.mylabwork.network.DevLifeApi
 import kotlinx.coroutines.launch
 
-class RandomViewModel : BaseGifStorageViewModel() {
-
-
+class HotViewModel : BaseGifStorageViewModel() {
     init {
         downloadData()
     }
 
     override fun downloadData() {
         viewModelScope.launch {
-            val getPropertyDeferred = DevLifeApi.retrofitService.getPropertyAsync()
             try {
                 _status.value = DevLifeApiStatus.LOADING
-                val result = getPropertyDeferred.await()
+                val getHotPropertiesDeferred =
+                    DevLifeApi.retrofitService.getLatestPropertiesAsync(0)
                 _status.value = DevLifeApiStatus.DONE
-                _property.value = result
-                cache.add(result)
+                val result = getHotPropertiesDeferred.await()
+                _property.value = result.result[0]
                 currentPage++
             } catch (e: Exception) {
                 _status.value = DevLifeApiStatus.ERROR

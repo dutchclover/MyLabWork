@@ -10,8 +10,7 @@ import com.example.mylabwork.random.RandomFragment
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
  * one of the sections/tabs/pages.
  */
-class SectionsPagerAdapter(fa: FragmentActivity)
-    : FragmentStateAdapter(fa) {
+class SectionsPagerAdapter(fa: FragmentActivity) : FragmentStateAdapter(fa) {
 
     override fun createFragment(position: Int): Fragment {
         // getItem is called to instantiate the fragment for the given page.

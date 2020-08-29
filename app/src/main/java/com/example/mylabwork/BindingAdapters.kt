@@ -7,7 +7,7 @@ import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.example.mylabwork.random.DevLifeApiStatus
+import com.example.mylabwork.base.DevLifeApiStatus
 
 
 @BindingAdapter("gifUrl")

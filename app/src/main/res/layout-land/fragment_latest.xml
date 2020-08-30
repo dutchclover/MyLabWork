@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.mylabwork.latest.LatestViewModel" />
+            type="com.example.mylabwork.viewmodels.latest.LatestViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,6 +24,7 @@
             android:layout_marginTop="8dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
+            app:devLifeGifStatus="@{viewModel.status}"
             app:gifUrl="@{viewModel.property.gifSrcUrl}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

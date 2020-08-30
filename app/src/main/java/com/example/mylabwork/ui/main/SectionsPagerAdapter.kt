@@ -4,10 +4,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.mylabwork.hot.HotFragment
-import com.example.mylabwork.latest.LatestFragment
-import com.example.mylabwork.random.RandomFragment
-import com.example.mylabwork.top.TopFragment
+import com.example.mylabwork.ui.hot.HotFragment
+import com.example.mylabwork.ui.latest.LatestFragment
+import com.example.mylabwork.ui.random.RandomFragment
+import com.example.mylabwork.ui.top.TopFragment
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to

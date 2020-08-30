@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
+        <import type="android.view.View" />
         <variable
             name="viewModel"
             type="com.example.mylabwork.random.RandomViewModel" />
@@ -83,6 +84,7 @@
             android:onClick="@{() -> viewModel.onBack()}"
             android:layout_height="60dp"
             android:layout_marginTop="28dp"
+            android:visibility="@{viewModel.atFirstPage ? View.GONE: View.VISIBLE}"
             android:background="@android:color/white"
             android:src="@drawable/back_button"
             style="?android:attr/borderlessButtonStyle"

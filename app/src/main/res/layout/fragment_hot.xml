@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
+        <import type="android.view.View" />
         <variable
             name="hotViewModel"
             type="com.example.mylabwork.hot.HotViewModel" />
@@ -82,6 +83,7 @@
             android:layout_width="60dp"
             android:onClick="@{() -> hotViewModel.onBack()}"
             android:layout_height="60dp"
+            android:visibility="@{viewModel.atFirstPage ? View.GONE: View.VISIBLE}"
             android:layout_marginTop="28dp"
             android:background="@android:color/white"
             android:src="@drawable/back_button"

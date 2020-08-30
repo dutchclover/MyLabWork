@@ -1,12 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <import type="android.view.View" />
+
         <variable
             name="viewModel"
-            type="com.example.mylabwork.top.TopViewModel" />
+            type="com.example.mylabwork.latest.LatestViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,20 +19,21 @@
 
         <ImageView
             android:id="@+id/gif_image"
-            android:layout_width="420dp"
-            android:layout_height="320dp"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_width="260dp"
+            android:layout_height="180dp"
+            android:layout_marginTop="8dp"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             app:gifUrl="@{viewModel.property.gifSrcUrl}"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/constraintLayout" />
 
         <TextView
             android:id="@+id/description_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:text="@{viewModel.property.description}"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
@@ -53,8 +56,8 @@
 
         <ImageView
             android:id="@+id/status_image"
-            android:layout_width="420dp"
-            android:layout_height="320dp"
+            android:layout_width="240dp"
+            android:layout_height="160dp"
             android:adjustViewBounds="true"
             android:scaleType="center"
             app:devLifeApiStatusImg="@{viewModel.status}"
@@ -64,35 +67,32 @@
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btn_next"
-            android:onClick="@{() -> viewModel.onNext()}"
-            android:focusable="true"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginTop="28dp"
             android:background="@android:color/white"
+            android:focusable="true"
+            android:onClick="@{() -> viewModel.onNext()}"
             android:src="@drawable/next_button"
             app:layout_constraintEnd_toEndOf="parent"
-            style="?android:attr/borderlessButtonStyle"
-            app:layout_constraintHorizontal_bias="0.7"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/description_text" />
+            app:layout_constraintStart_toEndOf="@+id/gif_image"
+            app:layout_constraintTop_toTopOf="@+id/btn_back" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btn_back"
-            android:focusable="true"
-            android:layout_width="60dp"
-            android:onClick="@{() -> viewModel.onBack()}"
-            android:visibility="@{viewModel.atFirstPage ? View.GONE: View.VISIBLE}"
-            android:layout_height="60dp"
-            android:layout_marginTop="28dp"
-            android:background="@android:color/white"
-            android:src="@drawable/back_button"
             style="?android:attr/borderlessButtonStyle"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.3"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@android:color/white"
+            android:focusable="true"
+            android:visibility="@{viewModel.atFirstPage ? View.GONE: View.VISIBLE}"
+            android:onClick="@{() -> viewModel.onBack()}"
+            android:src="@drawable/back_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/gif_image"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/description_text" />
-
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

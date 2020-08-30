@@ -9,6 +9,12 @@ enum class DevLifeApiStatus { LOADING, ERROR, DONE }
 
 abstract class BaseGifStorageViewModel : ViewModel(){
 
+    var isAtFirstPage = MutableLiveData<Boolean>()
+
+    protected val index = 0
+
+    protected var queryPageNumber = -1
+
     protected var currentPage = -1
     protected val cache = ArrayList<DevLifeProperty>()
 
@@ -22,24 +28,25 @@ abstract class BaseGifStorageViewModel : ViewModel(){
     val property: LiveData<DevLifeProperty>
         get() = _property
 
-    protected val _properties = MutableLiveData<List<DevLifeProperty>>()
-
-    val properties: LiveData<List<DevLifeProperty>>
-        get() = _properties
 
     open fun onNext() = if (hasInCache()) {
         _property.value = cache[++currentPage]
+        isAtFirstPage.value = false
     } else {
         downloadData()
     }
 
    open fun onBack() {
-        if (currentPage > 0) {
-            _property.value = cache[--currentPage]
-        }
-    }
+       if (currentPage > 1) {
+           _property.value = cache[--currentPage]
+       } else if (currentPage == 1) {
+           _property.value = cache[--currentPage]
+           isAtFirstPage.value = true
+       }
 
-    private fun hasInCache() =
+   }
+
+    fun hasInCache() =
         cache.isNotEmpty() && currentPage < cache.size - 1
 
     abstract fun downloadData()

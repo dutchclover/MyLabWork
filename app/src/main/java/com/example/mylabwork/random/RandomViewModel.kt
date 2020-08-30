@@ -10,6 +10,7 @@ class RandomViewModel : BaseGifStorageViewModel() {
 
 
     init {
+        isAtFirstPage.value = true
         downloadData()
     }
 

@@ -28,15 +28,15 @@ interface DevLifeApiService {
             Deferred<DevLifeProperty>
 
     @GET("top/{page_number}?json=true")
-    fun getTopPropertiesAsync(@Path("page_number")  page: Long):
+    fun getTopPropertiesAsync(@Path("page_number") page: Int):
             Deferred<DevLifeObject>
 
     @GET("latest/{page_number}?json=true")
-    fun getLatestPropertiesAsync(@Path("page_number")  page: Long):
+    fun getLatestPropertiesAsync(@Path("page_number") page: Int):
             Deferred<DevLifeObject>
 
     @GET("hot/{page_number}?json=true")
-    fun getHotPropertiesAsync(@Path("page_number")  page: Long):
+    fun getHotPropertiesAsync(@Path("page_number") page: Int):
             Deferred<DevLifeObject>
 }
 

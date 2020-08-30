@@ -22,7 +22,7 @@ class HotFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentHotBinding.inflate(inflater)
-        binding.hotViewModel = hotViewModel
+        binding.viewModel = hotViewModel
 
         binding.setLifecycleOwner(this)
 

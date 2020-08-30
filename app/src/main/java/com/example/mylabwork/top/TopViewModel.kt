@@ -10,17 +10,23 @@ class TopViewModel: BaseGifStorageViewModel() {
 
     init {
         downloadData()
+        isAtFirstPage.value = true
     }
 
     override fun downloadData() {
         viewModelScope.launch {
             try {
+                queryPageNumber++
                 _status.value = DevLifeApiStatus.LOADING
                 val getTopPropertiesDeferred =
-                    DevLifeApi.retrofitService.getTopPropertiesAsync(0)
+                    DevLifeApi.retrofitService.getTopPropertiesAsync(queryPageNumber)
                 _status.value = DevLifeApiStatus.DONE
                 val result = getTopPropertiesDeferred.await()
-                _property.value = result.result[0]
+                val listResult = result.result
+                _property.value = listResult[index]
+                listResult.forEach {
+                    cache.add(it)
+                }
                 currentPage++
             } catch (e: Exception) {
                 _status.value = DevLifeApiStatus.ERROR

@@ -8,19 +8,27 @@ import kotlinx.coroutines.launch
 
 class LatestViewModel : BaseGifStorageViewModel() {
 
+
     init {
         downloadData()
+        isAtFirstPage.value = true
     }
+
 
     override fun downloadData() {
         viewModelScope.launch {
             try {
+                queryPageNumber++
                 _status.value = DevLifeApiStatus.LOADING
                 val getLatestPropertiesDeferred =
-                    DevLifeApi.retrofitService.getLatestPropertiesAsync(0)
+                    DevLifeApi.retrofitService.getLatestPropertiesAsync(queryPageNumber)
                 _status.value = DevLifeApiStatus.DONE
                 val result = getLatestPropertiesDeferred.await()
-                _property.value = result.result[0]
+                val listResult = result.result
+                _property.value = listResult[index]
+                listResult.forEach {
+                    cache.add(it)
+                }
                 currentPage++
             } catch (e: Exception) {
                 _status.value = DevLifeApiStatus.ERROR

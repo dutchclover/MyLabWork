@@ -22,7 +22,7 @@ class LatestFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentLatestBinding.inflate(inflater)
-        binding.latestViewModel = latestViewModel
+        binding.viewModel = latestViewModel
 
         binding.lifecycleOwner = this
 

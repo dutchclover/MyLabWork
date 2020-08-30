@@ -2,10 +2,9 @@ package com.example.mylabwork.ui.main
 
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
-import androidx.viewpager2.widget.ViewPager2
 import com.example.mylabwork.R
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.android.synthetic.main.activity_main.*
 
 private val TAB_TITLES = arrayOf(
     R.string.random_tab,
@@ -21,15 +20,10 @@ class MainActivity : FragmentActivity() {
         setContentView(R.layout.activity_main)
 
         val sectionsPagerAdapter = SectionsPagerAdapter(this)
-
-        val viewPager: ViewPager2 = findViewById(R.id.view_pager)
-
         viewPager.adapter = sectionsPagerAdapter
-
-        val tabs: TabLayout = findViewById(R.id.tabs)
 
         TabLayoutMediator(tabs, viewPager) { tab, position ->
             tab.text = getString(TAB_TITLES[position])
-    }.attach()
-}
+        }.attach()
     }
+}

@@ -2,11 +2,14 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
+
         <import type="android.view.View" />
+
         <variable
             name="viewModel"
-            type="com.example.mylabwork.random.RandomViewModel" />
+            type="com.example.mylabwork.viewmodels.random.RandomViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,6 +25,7 @@
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
+            app:devLifeGifStatus="@{viewModel.status}"
             app:gifUrl="@{viewModel.property.gifSrcUrl}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="@+id/constraintLayout" />
@@ -30,10 +34,14 @@
             android:id="@+id/description_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="16dp"
+            android:layout_marginRight="8dp"
+            android:alpha="0.7"
             android:text="@{viewModel.property.description}"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+            android:textColor="@android:color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/gif_image" />
@@ -62,37 +70,42 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/btn_next"
-            android:onClick="@{() -> viewModel.onNext()}"
-            android:focusable="true"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="28dp"
-            android:background="@android:color/white"
-            android:src="@drawable/next_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            style="?android:attr/borderlessButtonStyle"
-            app:layout_constraintHorizontal_bias="0.7"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/description_text" />
-
-        <androidx.appcompat.widget.AppCompatImageButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_back"
-            android:focusable="true"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
             android:layout_width="60dp"
-            android:onClick="@{() -> viewModel.onBack()}"
             android:layout_height="60dp"
             android:layout_marginTop="28dp"
+            android:onClick="@{() -> viewModel.onBack()}"
+            android:padding="0dp"
             android:visibility="@{viewModel.atFirstPage ? View.GONE: View.VISIBLE}"
-            android:background="@android:color/white"
-            android:src="@drawable/back_button"
-            style="?android:attr/borderlessButtonStyle"
+            app:icon="@drawable/ic_arrow_left"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconSize="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.3"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/description_text" />
+            app:layout_constraintTop_toBottomOf="@+id/description_text"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle" />
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_next"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="28dp"
+            android:onClick="@{() -> viewModel.onNext()}"
+            android:padding="0dp"
+            app:icon="@drawable/ic_arrow_right"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconSize="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/description_text"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.Button.Circle" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

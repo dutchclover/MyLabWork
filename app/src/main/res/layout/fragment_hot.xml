@@ -5,8 +5,8 @@
     <data>
         <import type="android.view.View" />
         <variable
-            name="hotViewModel"
-            type="com.example.mylabwork.hot.HotViewModel" />
+            name="viewModel"
+            type="com.example.mylabwork.viewmodels.hot.HotViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,7 +22,8 @@
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            app:gifUrl="@{hotViewModel.property.gifSrcUrl}"
+            app:devLifeGifStatus="@{viewModel.status}"
+            app:gifUrl="@{viewModel.property.gifSrcUrl}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="@+id/constraintLayout" />
 
@@ -31,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@{hotViewModel.property.description}"
+            android:text="@{viewModel.property.description}"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
             app:layout_constraintEnd_toEndOf="parent"
@@ -46,7 +47,7 @@
             android:text="@string/connection_error"
             android:textAlignment="center"
             android:visibility="gone"
-            app:devLifeApiStatusTxt="@{hotViewModel.status}"
+            app:devLifeApiStatusTxt="@{viewModel.status}"
             app:layout_constraintBottom_toBottomOf="@id/gif_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -57,14 +58,14 @@
             android:layout_height="320dp"
             android:adjustViewBounds="true"
             android:scaleType="center"
-            app:devLifeApiStatusImg="@{hotViewModel.status}"
+            app:devLifeApiStatusImg="@{viewModel.status}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/btn_next"
-            android:onClick="@{() -> hotViewModel.onNext()}"
+            android:onClick="@{() -> viewModel.onNext()}"
             android:focusable="true"
             android:layout_width="60dp"
             android:layout_height="60dp"
@@ -81,9 +82,9 @@
             android:id="@+id/btn_back"
             android:focusable="true"
             android:layout_width="60dp"
-            android:onClick="@{() -> hotViewModel.onBack()}"
-            android:layout_height="60dp"
             android:visibility="@{viewModel.atFirstPage ? View.GONE: View.VISIBLE}"
+            android:onClick="@{() -> viewModel.onBack()}"
+            android:layout_height="60dp"
             android:layout_marginTop="28dp"
             android:background="@android:color/white"
             android:src="@drawable/back_button"

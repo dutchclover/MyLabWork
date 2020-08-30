@@ -1,4 +1,4 @@
-package com.example.mylabwork.network
+package com.example.mylabwork.network.data
 
 import com.squareup.moshi.Json
 

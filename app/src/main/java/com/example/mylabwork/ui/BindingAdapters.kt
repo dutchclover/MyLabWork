@@ -1,4 +1,4 @@
-package com.example.mylabwork
+package com.example.mylabwork.ui
 
 import android.view.View
 import android.widget.ImageView
@@ -7,8 +7,8 @@ import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.example.mylabwork.base.DevLifeApiStatus
-
+import com.example.mylabwork.R
+import com.example.mylabwork.viewmodels.base.DevLifeApiStatus
 
 @BindingAdapter("gifUrl")
 fun bindImage(imgView: ImageView, imgUrl: String?) {
@@ -18,8 +18,9 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
             .load(imgUri)
             .apply(
                 RequestOptions()
-                .placeholder(R.drawable.ic_loading_animation)
-                .error(R.drawable.ic_broken_image))
+                    .placeholder(R.drawable.ic_loading_animation)
+                    .error(R.drawable.ic_broken_image)
+            )
             .into(imgView)
     }
 }
@@ -35,9 +36,11 @@ fun bindStatus(statusImageView: ImageView, status: DevLifeApiStatus?) {
             statusImageView.visibility = View.VISIBLE
             statusImageView.setImageResource(R.drawable.ic_connection_error)
         }
-        DevLifeApiStatus.DONE -> {
+        DevLifeApiStatus.DONE ->
             statusImageView.visibility = View.GONE
-
+        DevLifeApiStatus.EMPTY -> {
+            statusImageView.setImageResource(R.drawable.ic_empty)
+            statusImageView.visibility = View.VISIBLE
         }
     }
 }
@@ -45,15 +48,31 @@ fun bindStatus(statusImageView: ImageView, status: DevLifeApiStatus?) {
 @BindingAdapter("devLifeApiStatusTxt")
 fun bindStatus(statusTextView: TextView, status: DevLifeApiStatus?) {
     when (status) {
-        DevLifeApiStatus.LOADING -> {
+        DevLifeApiStatus.LOADING ->
             statusTextView.visibility = View.GONE
-        }
         DevLifeApiStatus.ERROR -> {
+            statusTextView.text = statusTextView.context.getString(R.string.connection_error)
             statusTextView.visibility = View.VISIBLE
-
         }
-        DevLifeApiStatus.DONE -> {
+        DevLifeApiStatus.DONE ->
             statusTextView.visibility = View.GONE
+        DevLifeApiStatus.EMPTY -> {
+            statusTextView.text = statusTextView.context.getString(R.string.empty_data)
+            statusTextView.visibility = View.VISIBLE
         }
+    }
+}
+
+@BindingAdapter("devLifeGifStatus")
+fun bindGifStatus(imageView: ImageView, status: DevLifeApiStatus?) {
+    when (status) {
+        DevLifeApiStatus.LOADING ->
+            imageView.visibility = View.VISIBLE
+        DevLifeApiStatus.ERROR ->
+            imageView.visibility = View.INVISIBLE
+        DevLifeApiStatus.DONE ->
+            imageView.visibility = View.VISIBLE
+        DevLifeApiStatus.EMPTY ->
+            imageView.visibility = View.INVISIBLE
     }
 }

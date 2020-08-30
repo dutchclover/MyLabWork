@@ -4,5 +4,6 @@
     <string name="random_tab">Cлучайные</string>
     <string name="best_tab">Лучшие</string>
     <string name="hot_tab">Горячие</string>
+    <string name="empty_data">Ничего не найдено</string>
     <string name="connection_error">Произошла ошибка при загрузке данных. Проверьте подключение к сети.</string>
 </resources>

@@ -1,5 +1,7 @@
 package com.example.mylabwork.network
 
+import com.example.mylabwork.network.data.DevLifeObject
+import com.example.mylabwork.network.data.DevLifeProperty
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
